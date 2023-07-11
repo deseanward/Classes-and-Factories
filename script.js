@@ -105,3 +105,63 @@ timmy.eat(2);
 timmy.exercise(2);
 
 console.log(timmy);
+
+/**
+ * ******************** CHEF MAKE DINNERS ********************
+ */
+class Dinner {
+	constructor(appetizer, entree, dessert) {
+		this.appetizer = appetizer;
+		this.entree = entree;
+		this.dessert = dessert;
+
+		this.isReady = {};
+	}
+
+	cookDinner() {
+		this.isReady.appetizer = this.appetizer;
+
+		this.isReady.entree = this.entree;
+
+		this.isReady.dessert = this.dessert;
+
+		return this.isReady;
+	}
+}
+
+class Chef {
+	constructor(name) {
+		this.name = name;
+		this.dinner = '';
+	}
+
+	prepareDinner(appetizer, entree, dessert) {
+		const dinner = new Dinner(appetizer, entree, dessert);
+
+		const ready = dinner.cookDinner();
+
+		return `Preparing ${appetizer}... \nPreparing ${entree}... \nPreparing ${dessert}... \n\nYour dinner is served! \nFor starters, we're having delicious ${ready.appetizer}, followed by succullent ${ready.entree}. Finally, we'll top the meal off with some incredible ${ready.dessert}! \n\n`;
+	}
+}
+
+const pierre = new Chef();
+
+const dinnerOrders = [
+	pierre.prepareDinner(
+		'mozzerrell sticks',
+		'Chicken Parmesan',
+		'apple turnovers'
+	),
+
+	pierre.prepareDinner('chips & salsa', 'Carne Asada', 'Tres Leches Cake'),
+
+	pierre.prepareDinner(
+		'chef salad',
+		'Prime Rib',
+		'Chocolate Lava cake and ice cream'
+	),
+];
+
+dinnerOrders.forEach(dinner => {
+	console.log(`Dinner #${dinnerOrders.indexOf(dinner) +1} \n\n${dinner}`);
+});
